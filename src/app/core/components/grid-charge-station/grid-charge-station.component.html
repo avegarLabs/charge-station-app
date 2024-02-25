@@ -1,3 +1,27 @@
-<p>
-  grid-charge-station works!
-</p>
+<div class="mx-auto max-w-7xl py-10 sm:px-6 sm:py-10 lg:px-5">
+  <div
+    class="relative isolate overflow-hidden bg-gray-900 px-6 pt-10 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-10 lg:flex lg:gap-x-10 lg:px-14 lg:pt-0">
+    <svg viewBox="0 0 1024 1024"
+      class="absolute left-1/2 top-1/2 -z-10 h-[64rem] w-[64rem] -translate-y-1/2 [mask-image:radial-gradient(closest-side,white,transparent)] sm:left-full sm:-ml-80 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2 lg:translate-y-0"
+      aria-hidden="true">
+      <circle cx="512" cy="512" r="512" fill="url(#759c1415-0410-454c-8f7c-9a820de03641)" fill-opacity="0.7" />
+      <defs>
+        <radialGradient id="759c1415-0410-454c-8f7c-9a820de03641">
+          <stop stop-color="#7775D6" />
+          <stop offset="1" stop-color="#E935C1" />
+        </radialGradient>
+      </defs>
+    </svg>
+    <div class="lg:flex-auto lg:py-10 lg:text-left">
+      <h2 class="text-3xl font-bold tracking-tight text-gray-100">Charge Stations</h2>
+      <hr class="mt-2 bg-slate-100">
+
+      <div class="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2 mt-5">
+        <ng-container *ngFor="let item of stationsList">
+          <app-station-card [station]="item"></app-station-card>
+
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

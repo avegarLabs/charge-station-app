@@ -13,4 +13,5 @@ export interface UserListItem{
     email:string;
     password:string;
     roleList:string[];
+    moniker:string
 }

@@ -22,7 +22,7 @@ const routes: Routes = [
     component: GridChargeStationComponent
   },
   {
-    path:'station/:moniker',
+    path: 'detail/:moniker',
     component: ChargeStationDetailComponent
   },
   {

@@ -1,0 +1,5 @@
+.white-border {
+    border: 2px solid white;
+    padding: 1rem; 
+    border-radius: 20px;
+  }

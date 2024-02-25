@@ -7,6 +7,7 @@ export interface StationListItem {
   chargerType: string;
   numberOfChargingPoints: number;
   status: string;
+  moniker:string;
 }
 
 export interface StationModel {

@@ -1,0 +1,22 @@
+<div (click)="goToDetail(station.moniker)">
+
+  <div class="flex items-center gap-x-2 white-border">
+    <img class="h-24 w-24 rounded-md" [src]="imgSrc(station.moniker)" alt="">
+
+    <div class="ml-4 flex flex-1 flex-col">
+      <div>
+        <div class="flex justify-between text-base font-medium text-gray-900">
+          <h3 class="text-base font-semibold leading-7 tracking-tight text-slate-100">{{station.description}}</h3>
+          <p class="text-sm font-semibold leading-6 text-slate-100">{{station.chargerType}}</p>
+        </div>
+        <p class="text-sm font-semibold leading-6 text-slate-100">{{station.address}}</p>
+        <p class="text-sm font-semibold leading-6 text-slate-100">Latitude: {{station.latitude}} Longitude:
+          {{station.longitude}}</p>
+      </div>
+
+
+
+    </div>
+  </div>
+
+</div>
