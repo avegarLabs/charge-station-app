@@ -9,7 +9,7 @@ export class UserMockService {
 
   constructor() {
     const admin: UserListItem = {
-      id: '878779879797',
+      id: '65d67bbec6b1600c23e1dbaa',
       name: 'Alfredo Vega Ramírez',
       username: 'avegar',
       email: 'alfredovegaramiraz@gmail.com',
@@ -19,7 +19,7 @@ export class UserMockService {
     };
 
     const user: UserListItem = {
-      id: '878779879797',
+      id: '65d67bbec6b1600c23e1dbaa',
       name: 'Odet Lopez Batista',
       username: 'odet',
       email: 'odetlopez@gmail.com',

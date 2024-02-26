@@ -59,4 +59,10 @@ export class ChargeStationService {
       }
     });
   }
+
+  chargesByUser(userId:string): Observable<StationUseResponse[]>{
+    return this.http.get<StationUseResponse[]>(`${station_rote}/${userId}/charges`);
+
+  }
+
 }

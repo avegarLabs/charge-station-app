@@ -16,6 +16,7 @@ export class StatusAlertComponent implements OnInit {
    ) { }
 
   ngOnInit() {
+    console.log("mensaje " + this.status.message)
     this.createMessage();
      
   }

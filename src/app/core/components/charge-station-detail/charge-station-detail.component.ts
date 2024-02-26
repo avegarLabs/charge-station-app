@@ -46,8 +46,10 @@ export class ChargeStationDetailComponent implements OnInit {
   }
 
   checkStationState(id: string) {
+    
     return this.service.stationState(id).subscribe((data: any) => {
       if (data) {
+        console.log(data)
         this.status = data;
         this.showAlert = true;
       }

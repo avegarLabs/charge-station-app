@@ -14,10 +14,10 @@
     </svg>
     <div class="lg:flex-auto lg:py-10 lg:text-left">
       <div class="mt-2" *ngIf="showAlert">
-      <app-status-alert status="status"></app-status-alert>
+      <app-status-alert [status]="status"></app-status-alert>
     </div>
 
-      <h2 class="text-3xl font-bold tracking-tight text-gray-100">{{station.description}}</h2>
+      <h2 class="text-3xl font-bold tracking-tight text-gray-100 mt-2">{{station.description}}</h2>
       <hr class="mt-2 bg-slate-100">
       <div class="grid w-full grid-cols-1 items-start gap-x-6 gap-y-8 sm:grid-cols-12 lg:gap-x-8">
         <div class="mt-5 aspect-h-3 aspect-w-2 overflow-hidden rounded-lg bg-gray-100 sm:col-span-4 lg:col-span-5">
