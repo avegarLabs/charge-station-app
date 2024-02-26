@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatIconModule} from '@angular/material/icon'; 
+ 
 
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -13,6 +12,8 @@ import { AuthUserComponent } from './core/components/auth-user/auth-user.compone
 import { GridChargeStationComponent } from './core/components/grid-charge-station/grid-charge-station.component';
 import { ChargeStationDetailComponent } from './core/components/charge-station-detail/charge-station-detail.component';
 import { StationCardComponent } from './core/components/ui/station-card/station-card.component';
+import { UserAccountDetailsComponent } from './core/components/user-account-details/user-account-details.component';
+import { UserAccountCardComponent } from './core/components/ui/user-account-card/user-account-card.component';
 import { StatusAlertComponent } from './core/components/ui/status-alert/status-alert.component';
 
 @NgModule({
@@ -23,6 +24,8 @@ import { StatusAlertComponent } from './core/components/ui/status-alert/status-a
     GridChargeStationComponent,
     ChargeStationDetailComponent,
     StationCardComponent,
+     UserAccountCardComponent,
+    UserAccountDetailsComponent,
     StatusAlertComponent
   ],
   imports: [
@@ -32,9 +35,7 @@ import { StatusAlertComponent } from './core/components/ui/status-alert/status-a
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatDialogModule,
-    MatDialogModule,
-    MatIconModule
+   
     
     
   ],

@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { StationListItem } from '../../interfaces/charge-station';
 import { ChargeStationService } from '../../services/charge-station.service';
 import { ActivatedRoute } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
-import { StatusAlertComponent } from '../ui/status-alert/status-alert.component';
 
 export interface DialogData {
   status: any;
@@ -24,7 +22,7 @@ export class ChargeStationDetailComponent implements OnInit {
   constructor(
     private service: ChargeStationService,
     private actRoute: ActivatedRoute,
-    private dialog: MatDialog
+    
   ) {}
 
   ngOnInit() {
@@ -38,6 +36,7 @@ export class ChargeStationDetailComponent implements OnInit {
       .subscribe((data: StationListItem) => {
         if (data) {
           this.station = data;
+          this.checkStationState(this.station.id);
         }
       });
   }
@@ -50,16 +49,10 @@ export class ChargeStationDetailComponent implements OnInit {
     return this.service.stationState(id).subscribe((data: any) => {
       if (data) {
         this.status = data;
-        this.openAlertDialog(this.status);
+        this.showAlert = true;
       }
     });
   }
 
-  openAlertDialog(status: any): void {
-    const dialogRef = this.dialog.open(StatusAlertComponent, {
-      data: { status: status },
-      height: '170px',
-      width: '250px',
-    });
-  }
+ 
 }

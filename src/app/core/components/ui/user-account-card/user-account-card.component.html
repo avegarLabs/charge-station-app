@@ -1,0 +1,28 @@
+<div class="flex items-center gap-x-2">
+  <img class="h-24 w-24 rounded-md" src="assets/images/angular.png" alt="">
+
+  <div class="ml-4 flex flex-1 flex-col">
+    <div class="mt-5">
+      <div class="text-base font-medium text-gray-900">
+        <h3 class="text-base font-semibold leading-7 tracking-tight text-slate-100">Name: {{user.name}}</h3>
+        <p class="text-sm font-semibold leading-6 text-slate-100">User name: {{user.username}}</p>
+
+        <p class="text-sm font-semibold leading-6 text-slate-100">Email: {{user.email}}</p>
+
+        <div>
+          <h3 class="text-base font-semibold tracking-tight text-slate-100">Grand Types</h3>
+          <ul *ngFor="let item of user.roleList">
+              <li class="text-sm text-cyan-100">{{item}}</li>
+          </ul>
+        </div>
+
+        
+      </div>
+     
+     
+    </div>
+
+
+
+  </div>
+</div>

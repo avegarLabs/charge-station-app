@@ -1,6 +1,4 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { DialogData } from '../../charge-station-detail/charge-station-detail.component';
 
 @Component({
   selector: 'app-status-alert',
@@ -9,33 +7,26 @@ import { DialogData } from '../../charge-station-detail/charge-station-detail.co
 })
 export class StatusAlertComponent implements OnInit {
 
+  @Input() status: any;
   message:string = "";
   alertOk:boolean = false;
   alertFail:boolean = false;
 
   constructor(
-    public dialogRef: MatDialogRef<StatusAlertComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData,
-  ) { }
+   ) { }
 
   ngOnInit() {
-    console.log(this.data)
-    this.createMessage(this.data);
+    this.createMessage();
      
   }
-  createMessage(status: any) {
-    if(this.data.status.message === 'Available'){
-       this.message = "The station is " + this.data.status.message;
+  createMessage() {
+    if(this.status.message === 'Available'){
+       this.message = "The station is " + this.status.message;
        this.alertOk = true;
     }else{
-      this.message = "The station is " + this.data.status.message;
+      this.message = "The station is " + this.status.message;
       this.alertFail = true;
     }
     
   }
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
-}
+ }

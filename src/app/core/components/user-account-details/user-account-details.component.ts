@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserListItem } from 'src/app/core/interfaces/userInterface';
+import { UserMockService } from 'src/app/core/services/user-mock.service';
 
 @Component({
   selector: 'app-user-account-details',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserAccountDetailsComponent implements OnInit {
 
-  constructor() { }
+  registerUser!: UserListItem;
+
+  constructor(private service: UserMockService) { }
 
   ngOnInit() {
+    this.registerUser = this.service.userList[0];
   }
 
 }
