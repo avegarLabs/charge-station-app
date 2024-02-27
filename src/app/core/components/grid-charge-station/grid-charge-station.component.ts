@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StationListItem } from '../../interfaces/charge-station';
 import { ChargeStationService } from '../../services/charge-station.service';
 
+
 @Component({
   selector: 'app-grid-charge-station',
   templateUrl: './grid-charge-station.component.html',
@@ -9,12 +10,20 @@ import { ChargeStationService } from '../../services/charge-station.service';
 })
 export class GridChargeStationComponent implements OnInit {
   stationsList!: StationListItem[];
+  
 
-  constructor(private service: ChargeStationService) {}
+  constructor(
+    private service: ChargeStationService,
+   
+    ) {}
 
   ngOnInit() {
-    this.getAllStations();
+    
+    this.getAllStations()
   }
+
+ 
+
   getAllStations() {
     return this.service
       .getChargeStations()

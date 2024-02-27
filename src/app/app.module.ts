@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
  
-
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
@@ -17,6 +16,7 @@ import { UserAccountCardComponent } from './core/components/ui/user-account-card
 import { StatusAlertComponent } from './core/components/ui/status-alert/status-alert.component';
 import { AdminChargeStationComponent } from './core/components/admin/admin-charge-station/admin-charge-station.component';
 import { ChargeStationFormComponent } from './core/components/admin/charge-station-form/charge-station-form.component';
+import { AuthInterceptor } from './core/interceptors/AuthInterceptor';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,8 @@ import { ChargeStationFormComponent } from './core/components/admin/charge-stati
     UserAccountDetailsComponent,
     StatusAlertComponent,
     AdminChargeStationComponent,
-    ChargeStationFormComponent
+    ChargeStationFormComponent,
+  
   ],
   imports: [
     BrowserModule,
@@ -39,11 +40,8 @@ import { ChargeStationFormComponent } from './core/components/admin/charge-stati
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-   
-    
-    
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

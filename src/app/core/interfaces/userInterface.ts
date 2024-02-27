@@ -15,3 +15,4 @@ export interface UserListItem{
     roleList:string[];
     moniker:string
 }
+

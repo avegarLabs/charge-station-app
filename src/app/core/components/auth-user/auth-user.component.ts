@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthCredentials } from '../../interfaces/authCredentials';
+import { AuthCredentials, JwtToken } from '../../interfaces/authCredentials';
 import { RegisterModel, UserListItem } from '../../interfaces/userInterface';
 import { AuthService } from '../../services/auth.service';
+import { TokenService } from '../../services/token.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -22,6 +23,7 @@ export class AuthUserComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private service: AuthService,
+    private tokenService: TokenService,
     private route: Router
   ) {}
 
@@ -57,7 +59,12 @@ export class AuthUserComponent implements OnInit {
       username: this.authForm.value.username,
       password: this.authForm.value.password,
     };
-    console.log(this.accessCredential);
+    return  this.service.login(this.accessCredential).subscribe((data:JwtToken) => {
+      if (data) {
+        this.tokenService.setToken(data.token);
+        this.route.navigate(['']);
+      }
+    });
   }
 
   registerUser() {
@@ -72,7 +79,7 @@ export class AuthUserComponent implements OnInit {
       this.service.newUser(this.userModel).subscribe((data: UserListItem) => {
         if (data) {
           this.user = data;
-          this.route.navigate(['auth-confirm'])
+          this.route.navigate(['auth-confirm']);
         }
       });
     }
