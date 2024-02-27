@@ -15,6 +15,8 @@ import { StationCardComponent } from './core/components/ui/station-card/station-
 import { UserAccountDetailsComponent } from './core/components/user-account-details/user-account-details.component';
 import { UserAccountCardComponent } from './core/components/ui/user-account-card/user-account-card.component';
 import { StatusAlertComponent } from './core/components/ui/status-alert/status-alert.component';
+import { AdminChargeStationComponent } from './core/components/admin/admin-charge-station/admin-charge-station.component';
+import { ChargeStationFormComponent } from './core/components/admin/charge-station-form/charge-station-form.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { StatusAlertComponent } from './core/components/ui/status-alert/status-a
     StationCardComponent,
      UserAccountCardComponent,
     UserAccountDetailsComponent,
-    StatusAlertComponent
+    StatusAlertComponent,
+    AdminChargeStationComponent,
+    ChargeStationFormComponent
   ],
   imports: [
     BrowserModule,
