@@ -2,13 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { StationListItem } from '../../interfaces/charge-station';
 import { ChargeStationService } from '../../services/charge-station.service';
 import { ActivatedRoute } from '@angular/router';
-import { StationUseResponse, StationUseModel } from '../../interfaces/charge-station';
+import { StationUseModel } from '../../interfaces/charge-station';
 import { AuthService } from '../../services/auth.service';
 import { UserListItem } from '../../interfaces/userInterface';
+import { Router } from '@angular/router';
+import { ImageNameValidationService } from 'src/app/core/services/image-name-validation.service';
 
-export interface DialogData {
-  status: any;
-}
 
 @Component({
   selector: 'app-charge-station-detail',
@@ -26,13 +25,16 @@ export class ChargeStationDetailComponent implements OnInit {
   useModel!:StationUseModel;
   actUser!:UserListItem;
   useResponse!:any;
+  imagesName!: string[];
 
   
 
   constructor(
     private service: ChargeStationService,
     private actRoute: ActivatedRoute,
-    private authService: AuthService
+    private authService: AuthService,
+    private route: Router,
+    private imgServices: ImageNameValidationService
     
   ) {}
 
@@ -40,7 +42,7 @@ export class ChargeStationDetailComponent implements OnInit {
     this.checkUser();
     this.moniker = this.actRoute.snapshot.params['moniker'];
     this.loadStation(this.moniker);
-   
+    this.imagesName = this.imgServices.getFileNames();
   }
   checkUser() {
   return this.authService.getActiveUser().subscribe((data:UserListItem) => {
@@ -62,7 +64,12 @@ export class ChargeStationDetailComponent implements OnInit {
   }
 
   imgSrc(moniker: string) {
-    return this.srcBase + moniker + '.jpg';
+    let image = this.checkImageMoniker(moniker);
+    return this.srcBase + image + '.jpg';
+  }
+
+  checkImageMoniker(moniker:string){
+    return this.imagesName.find((item:string) => item === moniker) ? moniker : "charger_icon";
   }
 
   checkStationState(id: string) {
@@ -105,6 +112,10 @@ export class ChargeStationDetailComponent implements OnInit {
         this.ngOnInit();
       }
     })
+  }
+
+  goToStations(){
+    this.route.navigate(['stations']);
   }
 
   

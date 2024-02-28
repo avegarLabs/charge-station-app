@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { UserListItem } from 'src/app/core/interfaces/userInterface';
+import { ImageNameValidationService } from 'src/app/core/services/image-name-validation.service';
 
 @Component({
   selector: 'app-station-card',
@@ -12,11 +13,15 @@ export class StationCardComponent implements OnInit {
   @Input() station: any;
   srcBase: string = 'assets/images/stations/';
   activeUser!: UserListItem;
+  imagesName!: string[];
 
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(private router: Router, private authService: AuthService,
+    private imgServices: ImageNameValidationService
+    ) {}
 
   ngOnInit() {
     this.checkActiveUser();
+    this.imagesName = this.imgServices.getFileNames();
   }
 
   checkActiveUser() {
@@ -26,7 +31,8 @@ export class StationCardComponent implements OnInit {
   }
 
   imgSrc(moniker: string) {
-    return this.srcBase + moniker + '.jpg';
+    let image = this.checkImageMoniker(moniker);
+    return this.srcBase + image + '.jpg';
   }
 
   goToDetail(moniker: string) {
@@ -36,4 +42,11 @@ export class StationCardComponent implements OnInit {
       this.router.navigate(['auth']);
     }
   }
+
+  checkImageMoniker(moniker:string){
+    return this.imagesName.find((item:string) => item === moniker) ? moniker : "charger_icon";
+  }
+
+   
+
 }
