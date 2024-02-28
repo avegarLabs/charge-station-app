@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserListItem } from 'src/app/core/interfaces/userInterface';
-import { ChargeStationService } from '../../services/charge-station.service';
 import { StationUseResponse } from '../../interfaces/charge-station';
-import { UserMockService } from 'src/app/core/services/user-mock.service';
+import { ActivatedRoute } from '@angular/router';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-user-account-details',
@@ -14,20 +14,31 @@ export class UserAccountDetailsComponent implements OnInit {
   registerUser!: UserListItem;
   usesList!:StationUseResponse[];
   showRecords: boolean = false;
+  moniker!:string; 
 
   constructor(
-    private service: UserMockService,
-    private stationService: ChargeStationService
+    private service: UserService,
+    private actRoute: ActivatedRoute
     ) { }
 
   ngOnInit() {
-    this.registerUser = this.service.userList[0];
+    this.moniker = this.actRoute.snapshot.params['moniker'];
+    this.loadUser(this.moniker);
+  }
+
+
+  loadUser(moniker: string) {
+    return this.service.getUserByMoniker(moniker).subscribe((data:UserListItem) => {
+      if(data){
+        this.registerUser = data;
+      }
+    })
   }
 
   showUserRecords(){
-    console.log(this.registerUser.id)
-    return this.stationService.chargesByUser(this.registerUser.id).subscribe((data:StationUseResponse[]) =>{
+   return this.service.chargesByUser(this.registerUser.id).subscribe((data:StationUseResponse[]) =>{
       if(data){
+        console.log(data)
         this.usesList = data;
         this.showRecords = true;
       }

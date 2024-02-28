@@ -30,6 +30,7 @@ export interface StationUseResponse{
 export interface StationUseModel{
     userId:string;
     stationId:string;
+    charge_time:number;
 }
 
 

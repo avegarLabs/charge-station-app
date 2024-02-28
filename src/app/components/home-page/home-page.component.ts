@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { UserListItem } from 'src/app/core/interfaces/userInterface';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { TokenService } from 'src/app/core/services/token.service';
 
 @Component({
   selector: 'app-home-page',
@@ -16,7 +16,8 @@ export class HomePageComponent implements OnInit {
 
   constructor(
     private route:Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private tokenService: TokenService
     ) { }
 
   ngOnInit() {
@@ -33,6 +34,16 @@ export class HomePageComponent implements OnInit {
 
   goToAuth(){
     this.route.navigate(['auth']);
+  }
+
+  closeSession(){
+    this.tokenService.logOuth();
+    this.ngOnInit();
+  }
+
+
+  goToProfile(){
+    this.route.navigate(['user', this.user.moniker]);
   }
 
 }

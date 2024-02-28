@@ -30,8 +30,7 @@ const routes: Routes = [
     component: RegisterConfirmComponent
   },
   {
-    path:'user',
-    //path:'user/:moniker',
+    path:'user/:moniker',
     component: UserAccountDetailsComponent
   },
   {

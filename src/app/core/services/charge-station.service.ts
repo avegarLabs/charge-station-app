@@ -47,8 +47,14 @@ export class ChargeStationService {
     return this.http.get<StationListItem>(`${station_rote}/details/${moniker}`);
   }
 
-  userChargeCar(model: StationUseModel): Observable<StationUseResponse> {
-    return this.http.post<StationUseResponse>(`${station_rote}/use`, model);
+
+  changeStatusStation(id: string): Observable<StationListItem> {
+    return this.http.get<StationListItem>(`${station_rote}/modify/${id}`);
+  }
+
+
+  userChargeCar(model: StationUseModel): Observable<any> {
+    return this.http.post<any>(`${station_rote}/use`, model);
   }
 
   stationState(id: string) {
@@ -60,9 +66,6 @@ export class ChargeStationService {
     });
   }
 
-  chargesByUser(userId:string): Observable<StationUseResponse[]>{
-    return this.http.get<StationUseResponse[]>(`${station_rote}/${userId}/charges`);
-
-  }
+  
 
 }
